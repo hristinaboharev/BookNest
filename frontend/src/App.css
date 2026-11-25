@@ -212,3 +212,131 @@ nav li:hover {
     padding: 25px 5%;
   }
 }
+
+
+
+/* ADD BOOK BUTTON */
+.add-book-button {
+  display: block;
+  margin: 20px 0;
+  padding: 12px 22px;
+  background-color: #76563f;
+  color: #fffaf3;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.add-book-button:hover {
+  background-color: #5d4230;
+}
+
+/* ADD BOOK FORM */
+.add-book-form {
+  max-width: 500px;
+  margin: 20px 0 30px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fffaf3;
+  border: 1px solid #e8dccb;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(80, 55, 35, 0.08);
+}
+
+.add-book-form label {
+  color: #5d4635;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.add-book-form input:not([type="checkbox"]) {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #d8c8b6;
+  border-radius: 7px;
+  background-color: #ffffff;
+  color: #49382c;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* GENRE DROPDOWN */
+.add-book-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border: 1px solid #d8c8b6;
+  border-radius: 7px;
+  background-color: #ffffff;
+  color: #49382c;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-book-form select:focus {
+  outline: none;
+  border-color: #9a7658;
+  box-shadow: 0 0 0 2px rgba(154, 118, 88, 0.15);
+}
+
+.add-book-form select option {
+  background-color: #fffaf3;
+  color: #49382c;
+}
+
+.add-book-form input:focus {
+  outline: none;
+  border-color: #9a7658;
+  box-shadow: 0 0 0 2px rgba(154, 118, 88, 0.15);
+}
+
+.add-book-form .read-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 12px 0;
+  font-weight: 400;
+}
+
+.read-checkbox input {
+  accent-color: #76563f;
+}
+
+/* FORM BUTTONS */
+.add-book-submit,
+.cancel-button {
+  padding: 11px;
+  border: none;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.add-book-submit {
+  background-color: #76563f;
+  color: #fffaf3;
+}
+
+.add-book-submit:hover {
+  background-color: #5d4230;
+}
+
+.cancel-button {
+  background-color: #eee5da;
+  color: #5d4635;
+}
+
+.cancel-button:hover {
+  background-color: #e2d5c6;
+}
+
+

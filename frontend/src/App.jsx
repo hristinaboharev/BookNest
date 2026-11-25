@@ -4,12 +4,14 @@ import Navbar from './Navbar.jsx';
 import Hero from './Hero.jsx';
 import BookCard from './BookCard.jsx';
 import './App.css';
+import AddBookForm from "./AddBookForm.jsx";
 
 function App() {
 
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('All');
+  const [showAddForm, setShowAddForm] = useState(false);
 
   // Učitavanje knjiga iz backend-a
   useEffect(() => {
@@ -57,6 +59,26 @@ function App() {
 
           <h2>My books</h2>
 
+          {/*  dugme za dodavanje knjige*/}
+            <button
+                className="add-book-button"
+                onClick={() => setShowAddForm(!showAddForm)}
+            >
+                {showAddForm ? 'Close form' : 'Add a book'}
+            </button>
+
+            {/*forma za dodavanje knjige*/}
+            {showAddForm && (
+                <AddBookForm
+                    onBookAdded={(newBook) => {
+                        setBooks(previousBooks => [
+                            ...previousBooks,
+                            newBook
+                        ]);
+                    }}
+                    onClose={() => setShowAddForm(false)}
+                />
+            )}
           {/* Polje za pretragu */}
           <input
               type="text"

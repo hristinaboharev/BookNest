@@ -1,3 +1,4 @@
+
 const coverCache = new Map();
 
 export async function getBookCover(title, author) {
@@ -15,16 +16,20 @@ export async function getBookCover(title, author) {
             `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1`
         );
 
+        // Proveravamo da li je zahtev uspesan
         if (!response.ok) {
+            console.warn('Google Books API error:', response.status);
             return null;
         }
 
         const data = await response.json();
 
+        // Preuzimamo URL naslovnice
         const imageUrl =
-            data.items?.[0]?.volumeInfo?.imageLinks?.thumbnail || null;
+            data.items?.[0]?.volumeInfo?.imageLinks?.thumbnail
+                ?.replace('http://', 'https://') || null;
 
-        // Cuvamo pronadjenu naslovnicu
+        // Cuvamo rezultat da ne saljemo ponovo isti zahtev
         coverCache.set(cacheKey, imageUrl);
 
         return imageUrl;
