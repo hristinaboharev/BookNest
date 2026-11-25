@@ -1,5 +1,6 @@
 
 package com.booknest.booknest.controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.booknest.booknest.model.Book;
 import com.booknest.booknest.service.BookService;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
+@CrossOrigin(origins = "http://localhost:5173")
 public class BookController {
 
     private final BookService bookService;
@@ -55,5 +57,11 @@ public class BookController {
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
+    }
+
+    // Brisanje svih knjiga
+    @DeleteMapping
+    public void deleteAllBooks() {
+        bookService.deleteAllBooks();
     }
 }

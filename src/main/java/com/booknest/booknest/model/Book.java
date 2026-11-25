@@ -14,18 +14,20 @@ public class Book {
     private String genre;
     private Integer publicationYear;
     private boolean read;
+    private String coverUrl;
 
     //prazan konstruktor
     public Book() {
     }
 
-    public Book(Long id, String title, String author, String genre, Integer publicationYear, boolean read) {
+    public Book(Long id, String title, String author, String genre, Integer publicationYear, boolean read, String coverUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.publicationYear = publicationYear;
         this.read = read;
+        this.coverUrl = coverUrl;
     }
 
 
@@ -77,5 +79,13 @@ public class Book {
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 }
