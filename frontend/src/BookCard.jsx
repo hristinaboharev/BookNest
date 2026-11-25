@@ -1,8 +1,9 @@
 
-function BookCard({title, author,genre, publicationYear,read, coverUrl}) {
+function BookCard({ title, author, genre, publicationYear, read, coverUrl }) {
 
     return (
         <article className="book-card">
+
             {coverUrl && (
                 <img
                     src={coverUrl}
@@ -12,15 +13,16 @@ function BookCard({title, author,genre, publicationYear,read, coverUrl}) {
             )}
 
             <h3>{title}</h3>
-            <p>Author: {author}</p>
-            <p>Genre: {genre}</p>
+            <p>Author: {author?.name}</p>
+            <p>Genre: {genre?.name}</p>
             <p>Published: {publicationYear}</p>
 
             <span>
                 {read ? 'Read' : 'Not read yet'}
             </span>
-        </article>
 
+        </article>
     );
 }
+
 export default BookCard;

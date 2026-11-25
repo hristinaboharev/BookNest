@@ -1,9 +1,11 @@
 
 package com.booknest.booknest.controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.booknest.booknest.model.Book;
 import com.booknest.booknest.service.BookService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,21 +30,29 @@ public class BookController {
 
     // Prikaz jedne knjige po ID-u
     @GetMapping("/{id}")
-    public Optional<Book> getBookById(@PathVariable Long id) {
-        return bookService.getBookById(id);
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+
+        Optional<Book> book = bookService.getBookById(id);
+
+        return book.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     // Dodavanje nove knjige
     @PostMapping
-    public Book addBook(@RequestBody Book book) {
-        return bookService.saveBook(book);
+    public ResponseEntity<Book> addBook(@RequestBody Book book) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(bookService.saveBook(book));
     }
 
+    // Dodavanje više knjiga
     @PostMapping("/bulk")
-    public List<Book> addBooks(@RequestBody List<Book> books) {
-        return bookService.saveAllBooks(books);
-    }
+    public ResponseEntity<List<Book>> addBooks(
+            @RequestBody List<Book> books) {
 
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(bookService.saveAllBooks(books));
+    }
 
     // Izmena postojeće knjige
     @PutMapping("/{id}")
@@ -55,13 +65,17 @@ public class BookController {
 
     // Brisanje knjige
     @DeleteMapping("/{id}")
-    public void deleteBook(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
+
         bookService.deleteBook(id);
+        return ResponseEntity.noContent().build();
     }
 
     // Brisanje svih knjiga
     @DeleteMapping
-    public void deleteAllBooks() {
+    public ResponseEntity<Void> deleteAllBooks() {
+
         bookService.deleteAllBooks();
+        return ResponseEntity.noContent().build();
     }
 }

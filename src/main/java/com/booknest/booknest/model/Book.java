@@ -1,4 +1,6 @@
+
 package com.booknest.booknest.model;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,17 +12,28 @@ public class Book {
     private Long id;
 
     private String title;
-    private String author;
-    private String genre;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false)
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id", nullable = false)
+    private Genre genre;
+
     private Integer publicationYear;
+
     private boolean read;
+
     private String coverUrl;
 
-    //prazan konstruktor
+    // Prazan konstruktor
     public Book() {
     }
 
-    public Book(Long id, String title, String author, String genre, Integer publicationYear, boolean read, String coverUrl) {
+    // Konstruktor
+    public Book(Long id, String title, Author author, Genre genre,
+                Integer publicationYear, boolean read, String coverUrl) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -30,8 +43,7 @@ public class Book {
         this.coverUrl = coverUrl;
     }
 
-
-    //geteri i seteri
+    // Getteri i seteri
 
     public Long getId() {
         return id;
@@ -49,19 +61,19 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
